@@ -77,6 +77,11 @@ function createProductRows(){
     }
 }
 
+function maxJedinstveniBroj(artikli){
+    let maxJedinstveniBroj = artikli.length
+    return maxJedinstveniBroj
+
+}
 function handleFormSubmission() {
     let dodajBtn = document.querySelector('#dodajBtn')
     dodajBtn.addEventListener('click', function() {
@@ -86,13 +91,14 @@ function handleFormSubmission() {
         const naziv = formData.get('naziv')
         const cena = formData.get('cena')
         const opis = formData.get('opis')
-  
-        const noviArtikal = new Artikal(naziv, cena, opis)
+        let jedinstveniBroj = maxJedinstveniBroj(artikli) +1
+        const noviArtikal = new Artikal(jedinstveniBroj,naziv, cena, opis)
         artikli.push(noviArtikal)
   
         createProductRows()
     })
 }
+
 function displayProductDetails(artikal) {
     
     let nazivTd = document.createElement("td");

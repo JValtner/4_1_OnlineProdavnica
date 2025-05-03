@@ -7,23 +7,23 @@ body{
         width: 100%;
         .prikaz{
             display: inline-block;
-            vertical-align: middle;
+            vertical-align: top;
             margin: 20px;
-            width: 40%;
-            padding: 10px;
+            width: 400px;
             table{
+                width: 100%;
                 td{
-                    padding: 10px 30px 10px 30px !important;
+                    padding: 5px 30px 5px 30px;
                 }
             }
         }
         .form{
             display: inline-block;
-            vertical-align: middle;
+            vertical-align: top;
             border: 1px solid black;
-            padding:20px;
             margin: 20px;
-            width: 40%;
+            width: 400px;
+            padding: 10px;
             input{
                 margin-top: 10px;
                 margin-bottom: 10px;
@@ -32,10 +32,12 @@ body{
             }
         }
         .prikazDetalji{
-            width: 40%;
+            display: block;
+            margin: 20px;
+            width: 400px;
             padding: 10px;
             border: 1px solid black;
-            vertical-align: middle;
+            vertical-align:top;
             table{
                 border: none;
                 border-collapse: collapse;
