@@ -7,7 +7,8 @@ class Artikal{
         this.opis = opis
     }
 }
-let artikli =[]
+let artikli = []
+
 
 document.addEventListener('DOMContentLoaded', initializeApartments)
 
@@ -17,9 +18,9 @@ function initializeApartments() {
     const artTv = new Artikal(2,"TV", 650, "Ultra hd curved screen smart tv")
     const artMis = new Artikal(3,"Mis", 20, "Gejmerski bluetooth mis")
     const artTastatura = new Artikal(4,"Tastatura", 55, "Najnovija tastatura sa svetlecim tipkama")
+    //JSON
+    artikli = JSON.parse(localStorage.getItem("artikli"))
 
-    artikli = [artMonitor,artTv,artMis,artTastatura];
-  
     createProductRows()
     handleFormSubmission()
     loadTabeleStyles()
@@ -91,11 +92,17 @@ function handleFormSubmission() {
         const naziv = formData.get('naziv')
         const cena = formData.get('cena')
         const opis = formData.get('opis')
+        
         let jedinstveniBroj = maxJedinstveniBroj(artikli) +1
         const noviArtikal = new Artikal(jedinstveniBroj,naziv, cena, opis)
         artikli.push(noviArtikal)
+        //JSON
+        localStorage.removeItem("artikli");
+        let artikliJSON =JSON.stringify(artikli)
+        localStorage.setItem("artikli", artikliJSON)
   
         createProductRows()
+        loadTabeleStyles()
     })
 }
 
