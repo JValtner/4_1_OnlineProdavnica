@@ -1,9 +1,10 @@
 `use strict`
 class Artikal{
-    constructor(jedinstveniBroj, naziv, cena){
+    constructor(jedinstveniBroj, naziv, cena, opis){
         this.jedinstveniBroj = jedinstveniBroj
         this.naziv = naziv
         this.cena = cena
+        this.opis = opis
     }
 }
 let artikli =[]
@@ -12,10 +13,10 @@ document.addEventListener('DOMContentLoaded', initializeApartments)
 
 function initializeApartments() {
 
-    const artMonitor = new Artikal(1,"Monitor", 165)
-    const artTv = new Artikal(2,"TV", 650)
-    const artMis = new Artikal(3,"Mis", 20)
-    const artTastatura = new Artikal(4,"Tastatura", 55)
+    const artMonitor = new Artikal(1,"Monitor", 165, "Veliki monitor najnovije generacije")
+    const artTv = new Artikal(2,"TV", 650, "Ultra hd curved screen smart tv")
+    const artMis = new Artikal(3,"Mis", 20, "Gejmerski bluetooth mis")
+    const artTastatura = new Artikal(4,"Tastatura", 55, "Najnovija tastatura sa svetlecim tipkama")
 
     artikli = [artMonitor,artTv,artMis,artTastatura];
   
@@ -51,6 +52,18 @@ function createProductRows(){
         let jedinstveniBroj= document.createElement("td") 
         let naziv= document.createElement("td") 
         let cena= document.createElement("td") 
+        let button = document.createElement("td")
+        
+        let prikaziButton = document.createElement("button")
+        prikaziButton.textContent = "Prikazi"
+
+        prikaziButton.addEventListener('click',
+        function (event) {
+                displayProductDetails(artikal)
+                event.stopPropagation()
+         })
+        
+        button.appendChild(prikaziButton)
     
         jedinstveniBroj.textContent = artikal.jedinstveniBroj
         naziv.textContent = artikal.naziv
@@ -59,6 +72,7 @@ function createProductRows(){
         tr.appendChild(jedinstveniBroj)
         tr.appendChild(naziv)
         tr.appendChild(cena)
+        tr.appendChild(button)
         tabela.appendChild(tr)
     }
 }
@@ -79,6 +93,29 @@ function handleFormSubmission() {
         createProductRows()
     })
 }
+function displayProductDetails(artikal) {
+    
+    let nazivTd = document.createElement("td");
+    let cenaTd = document.createElement("td");
+    let opisTd = document.createElement("td");
+
+    nazivTd.textContent = artikal.naziv;
+    cenaTd.textContent = artikal.cena;
+    opisTd.textContent = artikal.opis;
+
+    let detaljiNaziv = document.querySelector("#naziv-detalji");
+    let detaljiCena = document.querySelector("#cena-detalji");
+    let detaljiOpis = document.querySelector("#opis-detalji");
+
+    if (detaljiNaziv.children.length > 1) detaljiNaziv.removeChild(detaljiNaziv.children[1]);
+    if (detaljiCena.children.length > 1) detaljiCena.removeChild(detaljiCena.children[1]);
+    if (detaljiOpis.children.length > 1) detaljiOpis.removeChild(detaljiOpis.children[1]);
+
+    detaljiNaziv.appendChild(nazivTd);
+    detaljiCena.appendChild(cenaTd);
+    detaljiOpis.appendChild(opisTd);
+}
+
          
     
      
