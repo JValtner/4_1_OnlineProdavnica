@@ -79,7 +79,12 @@ function createProductRows(){
 }
 
 function maxJedinstveniBroj(artikli){
-    let maxJedinstveniBroj = artikli.length
+    let maxJedinstveniBroj  =0
+    for(let artikal of artikli){
+       if(artikal.jedinstveniBroj>maxJedinstveniBroj){
+        maxJedinstveniBroj = artikal.jedinstveniBroj
+       } 
+    }
     return maxJedinstveniBroj
 
 }
